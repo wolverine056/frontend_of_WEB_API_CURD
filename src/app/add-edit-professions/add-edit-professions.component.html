@@ -1,0 +1,60 @@
+<form>
+  <div class="mb-3">
+    <label for="name"
+           class="form-label">Name</label>
+    <input type="text"
+           class="form-control"
+           [(ngModel)]="name" name="name" >
+  </div>
+
+  <div class="mb-3">
+    <label for="professiontype"
+           class="form-label">Professional Type</label>
+    <input type="text"
+           class="form-control"
+           name="professiontype"
+           [(ngModel)]="professionId"
+           *ngIf="professionz.id!=0" disabled>
+    <select name="professiontype"
+            id="professiontype"
+            class="form-control"
+            [(ngModel)]="professionId"
+            *ngIf="professionz.id==0">
+      <option *ngFor="let m of professiontype$|async"
+              [value]="m.id">{{m.profession}}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="status"
+           class="form-label">Status</label>
+    <select name="status"
+            id="status"
+            class="form-control"
+            [(ngModel)]="status">
+      <option *ngFor="let m of statuslist$|async"
+              [value]="m.statusOptons">{{m.statusOptons}}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="experience"
+           class="form-label">Experiance</label>
+    <input type="number"
+           class="form-control"
+           [(ngModel)]="experience"
+           name="experience" >
+  </div>
+
+  <button (click)="addprofession()"
+          *ngIf="professionz.id==0"
+          class="btn btn-primary">Add
+  </button>
+
+  <button (click)="updateProfession()"
+          *ngIf="professionz.id!==0"
+          class="btn btn-primary">Update
+  </button>
+</form>
